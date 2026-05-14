@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 500px; height: 300px;">
+        <canvas id="revenueChart"></canvas>
+    </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+  const labels = ['08/05','09/05','10/05','11/05','12/05','13/05','14/05'];
+  const data = [13545124,19736500,24847668,10332824,12488812,6988863,22201402];
+  
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Doanh thu (VNĐ)',
+        data: data,
+        backgroundColor: [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+            '#FFEEAD', '#D4A5A5', '#9B59B6'
+        ],
+        borderWidth: 2,
+        hoverOffset: 10
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '60%',
+      plugins: {
+        legend: { position: 'right' }
+      }
+    }
+  });
+});
+    </script>
+</body>
+</html>
