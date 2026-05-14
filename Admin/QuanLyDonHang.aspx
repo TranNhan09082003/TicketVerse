@@ -26,10 +26,10 @@
             <asp:GridView ID="gvDonHang" runat="server" AutoGenerateColumns="False" CssClass="admin-table"
                 DataKeyNames="MaDH" OnRowCommand="gvDonHang_RowCommand" GridLines="None">
                 <Columns>
-                    <asp:BoundField DataField="MaDonPayOS" HeaderText="Mã Đơn PayOS" ItemStyle-Font-Weight="Bold" />
+                    <asp:BoundField DataField="MaDonPayOS" HeaderText="Mã Đơn PayOS" ItemStyle-Font-Bold="True" />
                     <asp:BoundField DataField="HoTen" HeaderText="Khách Hàng" />
                     <asp:BoundField DataField="NgayDat" HeaderText="Ngày Đặt" DataFormatString="{0:dd/MM/yyyy HH:mm}" />
-                    <asp:BoundField DataField="TongTien" HeaderText="Tổng Tiền" DataFormatString="{0:N0} đ" ItemStyle-Font-Weight="Bold" ItemStyle-ForeColor="#E1306C" />
+                    <asp:BoundField DataField="TongTien" HeaderText="Tổng Tiền" DataFormatString="{0:N0} đ" ItemStyle-Font-Bold="True" ItemStyle-ForeColor="#E1306C" />
                     <asp:TemplateField HeaderText="Trạng Thái">
                         <ItemTemplate>
                             <span class='tv-badge <%# Eval("TrangThai").ToString() == "DaThanhToan" ? "tv-badge-success" : (Eval("TrangThai").ToString() == "ChoThanhToan" ? "tv-badge-warning" : "tv-badge-danger") %>'>

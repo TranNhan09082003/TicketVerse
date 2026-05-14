@@ -89,32 +89,26 @@ namespace TranTrongNhan_35011.Admin
             
             script.AppendLine(@"
   new Chart(ctx, {
-    type: 'line',
+    type: 'doughnut',
     data: {
       labels: labels,
       datasets: [{
         label: 'Doanh thu (VNĐ)',
         data: data,
-        borderColor: '#667EEA',
-        backgroundColor: 'rgba(102, 126, 234, 0.1)',
-        borderWidth: 3,
-        pointBackgroundColor: '#fff',
-        pointBorderColor: '#667EEA',
-        pointBorderWidth: 2,
-        pointRadius: 5,
-        fill: true,
-        tension: 0.4
+        backgroundColor: [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+            '#FFEEAD', '#D4A5A5', '#9B59B6'
+        ],
+        borderWidth: 2,
+        hoverOffset: 10
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      cutout: '60%',
       plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        y: { beginAtZero: true, grid: { borderDash: [5, 5], color: '#eee' } },
-        x: { grid: { display: false } }
+        legend: { position: 'right' }
       }
     }
   });

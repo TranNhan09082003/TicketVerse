@@ -71,10 +71,10 @@ namespace TranTrongNhan_35011.Admin
 
         private void ShowMessage(string msg, bool isSuccess)
         {
-            lblMessage.Text = msg;
-            lblMessage.Visible = true;
-            lblMessage.Style["background"] = isSuccess ? "#e8f5e9" : "#ffebee";
-            lblMessage.Style["color"] = isSuccess ? "#2e7d32" : "#c62828";
+            lblMessage.Visible = false; // Hide old label
+            string icon = isSuccess ? "success" : "error";
+            string script = $"showToast('{icon}', '{msg}');";
+            System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastMsg", script, true);
         }
     }
 }
