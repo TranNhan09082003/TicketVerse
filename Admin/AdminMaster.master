@@ -1,0 +1,138 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="TranTrongNhan_35011.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicketVerse — Admin Portal</title>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/ticketverse.css") %>" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+    <style>
+        body { background-color: #f4f7fe; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        .admin-layout { display: flex; min-height: 100vh; }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 100;
+        }
+        .admin-brand {
+            padding: 32px 24px;
+            font-family: 'Outfit';
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--clr-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-menu { list-style: none; padding: 0; margin: 0; flex: 1; }
+        .admin-menu li { margin-bottom: 8px; padding: 0 16px; }
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            color: var(--clr-text2);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+        .admin-menu a:hover { background: #f8f9fa; color: var(--clr-primary); }
+        .admin-menu a.active { background: var(--grad-primary); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.3); }
+        
+        /* Main Content */
+        .admin-main { flex: 1; margin-left: 280px; display: flex; flex-direction: column; }
+        .admin-header {
+            height: 80px;
+            background: white;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .admin-content { padding: 40px; flex: 1; }
+        
+        /* Admin Card */
+        .admin-card { background: white; border-radius: 20px; padding: 24px; box-shadow: var(--sh-card); margin-bottom: 24px; }
+        .admin-title { font-family: 'Outfit'; font-size: 24px; margin-bottom: 24px; }
+        
+        /* Table */
+        .admin-table { width: 100%; border-collapse: collapse; }
+        .admin-table th { background: #f8f9fa; padding: 16px; text-align: left; font-weight: 700; color: var(--clr-text2); border-bottom: 2px solid var(--clr-border); }
+        .admin-table td { padding: 16px; border-bottom: 1px solid var(--clr-border); vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="admin-layout">
+            <!-- SIDEBAR -->
+            <aside class="admin-sidebar">
+                <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="admin-brand">
+                    🎫 TicketVerse
+                </a>
+                <ul class="admin-menu">
+                    <li>
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" id="menuDashboard" runat="server">
+                            📊 Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= ResolveUrl("~/Admin/QuanLySuKien.aspx") %>" id="menuSuKien" runat="server">
+                            🎉 Quản Lý Sự Kiện
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= ResolveUrl("~/Admin/QuanLyDonHang.aspx") %>" id="menuDonHang" runat="server">
+                            🧾 Quản Lý Đơn Hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= ResolveUrl("~/Admin/QuanLyNguoiDung.aspx") %>" id="menuNguoiDung" runat="server">
+                            👥 Quản Lý User
+                        </a>
+                    </li>
+                </ul>
+                <div style="padding: 24px;">
+                    <a href="<%= ResolveUrl("~/TrangChu.aspx") %>" style="display:block; text-align:center; padding:12px; background:#f8f9fa; border-radius:12px; color:var(--clr-text); text-decoration:none; font-weight:600;">
+                        ← Về Trang Chủ
+                    </a>
+                </div>
+            </aside>
+
+            <!-- MAIN WRAPPER -->
+            <div class="admin-main">
+                <!-- TOP HEADER -->
+                <header class="admin-header">
+                    <div style="font-weight:600; font-size:18px; color:var(--clr-text);">Hệ Thống Quản Trị</div>
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <span style="font-weight:600;">👋 Chào, <asp:Label ID="lblAdminName" runat="server" /></span>
+                        <asp:Button ID="btnLogout" runat="server" Text="Đăng Xuất" OnClick="btnLogout_Click" CssClass="tv-btn tv-btn-secondary" style="padding:8px 16px; font-size:13px;" />
+                    </div>
+                </header>
+
+                <!-- CONTENT -->
+                <div class="admin-content">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Chart.js for Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

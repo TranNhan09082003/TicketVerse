@@ -1,0 +1,51 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="QLNH.master.cs" Inherits="TranTrongNhan_35011.QLNH" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Quản Lý Nhà Hàng</title>
+    <style>
+        body { font-family: Arial; margin: 0; }
+        table { width: 100%; }
+        .header { background-color: #8B0000; color: white; text-align: center; padding: 10px; font-size: 22px; font-weight: bold; }
+        .left { width: 180px; background-color: #f0f0f0; vertical-align: top; padding: 10px; border-right: 1px solid #ccc; }
+        .center { vertical-align: top; padding: 10px; }
+        .right { width: 200px; background-color: #fff3e0; vertical-align: top; padding: 10px; border-left: 1px solid #ccc; text-align: center; }
+        .left h3 { color: #8B0000; }
+        .left a { display: block; padding: 5px; text-decoration: none; color: #333; }
+        .left a:hover { background-color: #8B0000; color: white; }
+        .right h3 { color: #8B0000; }
+        .so-mon { font-size: 40px; font-weight: bold; color: #8B0000; }
+        .footer { background-color: #8B0000; color: white; text-align: center; padding: 8px; }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">QUẢN LÝ NHÀ HÀNG</div>
+        <table>
+            <tr>
+                <td class="left">
+                    <h3>Loại Món Ăn</h3>
+                    <asp:Repeater ID="rptLoaiMon" runat="server">
+                        <ItemTemplate>
+                            <a href='MonAn.aspx?maloai=<%# Eval("MaLoaiMon") %>'><%# Eval("TenLoaiMon") %></a>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </td>
+                <td class="center">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+                <td class="right">
+                    <h3>Thống Kê</h3>
+                    <p>Số món chính:</p>
+                    <div class="so-mon">
+                        <asp:Label ID="lblSoMon" runat="server" Text="0"></asp:Label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="footer">TranTrongNhan_35011</div>
+    </form>
+</body>
+</html>
