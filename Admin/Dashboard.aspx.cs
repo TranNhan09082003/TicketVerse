@@ -68,8 +68,10 @@ namespace TranTrongNhan_35011.Admin
             // Để demo, chúng ta tạo dữ liệu mẫu 7 ngày gần nhất
             StringBuilder script = new StringBuilder();
             script.AppendLine("<script>");
-            script.AppendLine("document.addEventListener('DOMContentLoaded', function() {");
-            script.AppendLine("  const ctx = document.getElementById('revenueChart').getContext('2d');");
+            script.AppendLine("setTimeout(function() {");
+            script.AppendLine("  var canvas = document.getElementById('revenueChart');");
+            script.AppendLine("  if(!canvas) { console.error('Canvas not found'); return; }");
+            script.AppendLine("  var ctx = canvas.getContext('2d');");
             
             // Lấy 7 ngày gần nhất để làm label
             string[] labels = new string[7];
@@ -112,7 +114,7 @@ namespace TranTrongNhan_35011.Admin
       }
     }
   });
-});
+}, 500);
 </script>");
 
             litChartData.Text = script.ToString();
