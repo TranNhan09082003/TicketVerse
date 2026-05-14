@@ -22,8 +22,8 @@ namespace TranTrongNhan_35011
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                lblError.Text = "⚠️ Vui lòng nhập đầy đủ email và mật khẩu!";
-                lblError.Visible = true;
+                lblError.Visible = false;
+                System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastError", "showToast('warning', 'Vui lòng nhập đầy đủ email và mật khẩu!');", true);
                 return;
             }
 
@@ -50,8 +50,8 @@ namespace TranTrongNhan_35011
                 }
                 else
                 {
-                    lblError.Text = "❌ Email hoặc mật khẩu không đúng!";
-                    lblError.Visible = true;
+                    lblError.Visible = false;
+                    System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastError", "showToast('error', 'Email hoặc mật khẩu không đúng!');", true);
                 }
                 conn.Close();
             }

@@ -8,6 +8,8 @@
     <meta name="description" content="TicketVerse - Nền tảng mua bán vé sự kiện, concert, workshop, thể thao và trải nghiệm hàng đầu Việt Nam" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/ticketverse.css") %>" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
@@ -28,6 +30,11 @@
                     🛒
                     <span class="tv-cart-badge" style="display:none;">0</span>
                 </a>
+                <asp:Panel ID="pnlAdminBtn" runat="server" Visible="false" style="display:inline-block; margin-right:8px;">
+                    <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="tv-user-btn" style="background: #333; color: #fff;">
+                        ⚙️ Quản Trị
+                    </a>
+                </asp:Panel>
                 <asp:Panel ID="pnlGuest" runat="server">
                     <a href="<%= ResolveUrl("~/DangNhap.aspx") %>" class="tv-user-btn">Đăng Nhập</a>
                 </asp:Panel>
@@ -87,5 +94,26 @@
     </form>
     <script src="<%= ResolveUrl("~/Assets/js/ticketverse.js") %>"></script>
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- Global SweetAlert Toast System -->
+    <script>
+        function showToast(icon, title) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: icon,
+                title: title
+            });
+        }
+    </script>
 </body>
 </html>

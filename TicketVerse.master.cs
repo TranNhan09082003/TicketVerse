@@ -20,11 +20,17 @@ namespace TranTrongNhan_35011
                 pnlGuest.Visible = false;
                 pnlUser.Visible = true;
                 lblUserName.Text = Session["HoTen"]?.ToString() ?? "User";
+                
+                if (Session["VaiTro"] != null && Session["VaiTro"].ToString() == "Admin")
+                {
+                    pnlAdminBtn.Visible = true;
+                }
             }
             else
             {
                 pnlGuest.Visible = true;
                 pnlUser.Visible = false;
+                pnlAdminBtn.Visible = false;
             }
         }
     }

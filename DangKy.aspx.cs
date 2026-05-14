@@ -67,21 +67,22 @@ namespace TranTrongNhan_35011
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
-                lblSuccess.Text = "✅ Đăng ký thành công! Đang chuyển hướng...";
-                lblSuccess.Visible = true;
+                lblSuccess.Visible = false;
                 lblError.Visible = false;
 
-                // Auto-redirect after 2 seconds
-                ClientScript.RegisterStartupScript(GetType(), "redirect",
-                    "setTimeout(function(){ window.location.href='DangNhap.aspx'; }, 2000);", true);
+                // Show success toast and Auto-redirect after 2 seconds
+                string script = "showToast('success', 'Đăng ký thành công!'); setTimeout(function(){ window.location.href='DangNhap.aspx'; }, 2000);";
+                ClientScript.RegisterStartupScript(GetType(), "redirect", script, true);
             }
         }
 
         private void ShowError(string msg)
         {
-            lblError.Text = msg;
-            lblError.Visible = true;
+            lblError.Visible = false;
             lblSuccess.Visible = false;
+            // Extract message without the emoji prefix if any
+            string cleanMsg = msg.StartsWith("⚠️ ") || msg.StartsWith("❌ ") ? msg.Substring(3) : msg;
+            System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastError", $"showToast('error', '{cleanMsg}');", true);
         }
     }
 }

@@ -194,10 +194,8 @@ namespace TranTrongNhan_35011
 
                 if (soLuong > remaining)
                 {
-                    lblMsg.Text = "❌ Chỉ còn " + remaining + " vé!";
-                    lblMsg.Style["background"] = "#ffebee";
-                    lblMsg.Style["color"] = "#c62828";
-                    lblMsg.Visible = true;
+                    lblMsg.Visible = false;
+                    System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastError", "showToast('warning', 'Chỉ còn " + remaining + " vé!');", true);
                     conn.Close();
                     return;
                 }
@@ -235,10 +233,8 @@ namespace TranTrongNhan_35011
                 conn.Close();
             }
 
-            lblMsg.Text = "✅ Đã thêm vào giỏ hàng!";
-            lblMsg.Style["background"] = "#e8f5e9";
-            lblMsg.Style["color"] = "#2e7d32";
-            lblMsg.Visible = true;
+            lblMsg.Visible = false;
+            System.Web.UI.ScriptManager.RegisterStartupScript(this, GetType(), "ToastSuccess", "showToast('success', 'Đã thêm vào giỏ hàng!');", true);
         }
     }
 }
