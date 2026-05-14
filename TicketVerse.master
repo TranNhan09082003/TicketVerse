@@ -30,11 +30,11 @@
                     🛒
                     <span class="tv-cart-badge" style="display:none;">0</span>
                 </a>
-                <asp:Panel ID="pnlAdminBtn" runat="server" Visible="false" style="display:inline-block; margin-right:8px;">
-                    <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="tv-user-btn" style="background: #333; color: #fff;">
+                <% if (Session["VaiTro"] != null && Session["VaiTro"].ToString() == "Admin") { %>
+                    <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="tv-user-btn" style="background: #333; color: #fff; margin-right: 8px;">
                         ⚙️ Quản Trị
                     </a>
-                </asp:Panel>
+                <% } %>
                 <asp:Panel ID="pnlGuest" runat="server">
                     <a href="<%= ResolveUrl("~/DangNhap.aspx") %>" class="tv-user-btn">Đăng Nhập</a>
                 </asp:Panel>
