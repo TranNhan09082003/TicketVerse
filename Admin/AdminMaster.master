@@ -86,22 +86,22 @@
                 </a>
                 <ul class="admin-menu">
                     <li>
-                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" id="menuDashboard" runat="server">
+                        <a href="~/Admin/Dashboard.aspx" id="menuDashboard" runat="server">
                             📊 Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="<%= ResolveUrl("~/Admin/QuanLySuKien.aspx") %>" id="menuSuKien" runat="server">
+                        <a href="~/Admin/QuanLySuKien.aspx" id="menuSuKien" runat="server">
                             🎉 Quản Lý Sự Kiện
                         </a>
                     </li>
                     <li>
-                        <a href="<%= ResolveUrl("~/Admin/QuanLyDonHang.aspx") %>" id="menuDonHang" runat="server">
+                        <a href="~/Admin/QuanLyDonHang.aspx" id="menuDonHang" runat="server">
                             🧾 Quản Lý Đơn Hàng
                         </a>
                     </li>
                     <li>
-                        <a href="<%= ResolveUrl("~/Admin/QuanLyNguoiDung.aspx") %>" id="menuNguoiDung" runat="server">
+                        <a href="~/Admin/QuanLyNguoiDung.aspx" id="menuNguoiDung" runat="server">
                             👥 Quản Lý User
                         </a>
                     </li>
